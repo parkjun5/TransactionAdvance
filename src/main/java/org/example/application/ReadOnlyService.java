@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = true, value = "transactionManager")
 @RequiredArgsConstructor
 public class ReadOnlyService {
 
