@@ -1,4 +1,4 @@
-package org.example;
+package org.example.apply;
 
 import org.example.application.NonReadOnlyService;
 import org.example.domain.NonReadOnly;

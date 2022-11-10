@@ -1,6 +1,5 @@
-package org.example;
+package org.example.apply;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 
 @Slf4j
 @SpringBootTest
-public class InternalCallV2Test {
+public class InternalCallV1Test {
 
    @Autowired
    CallService callService;
@@ -23,53 +22,37 @@ public class InternalCallV2Test {
     }
 
     @Test
-    void externalCallV2Test() {
+    void externalTest() {
         callService.external();
     }
 
+    @Test
+    void internalTest() {
+        callService.internal();
+    }
 
     @TestConfiguration
     static class TxApplyBasicConfig {
         @Bean
         CallService callService() {
-            return new CallService(internalService());
-        }
-
-        @Bean
-        InternalService internalService() {
-            return new InternalService();
+            return new CallService();
         }
     }
 
     @Slf4j
-    @RequiredArgsConstructor
     static class CallService {
-
-        private final InternalService internalService;
 
         @Transactional(readOnly = true)
         public void external() {
             log.info("call external");
             printTxInfo();
-            internalService.internal();
         }
-
-        private void printTxInfo() {
-            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
-            log.info("tx active = {}", txActive);
-            boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
-            log.info("read only = {}", readOnly);
-        }
-    }
-
-    @Slf4j
-    static class InternalService {
 
         @Transactional
         public void internal() {
             log.info("call internal");
-            TransactionSynchronizationManager.setCurrentTransactionReadOnly(false);
             printTxInfo();
+            external();
         }
 
         private void printTxInfo() {
