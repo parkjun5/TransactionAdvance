@@ -1,6 +1,5 @@
-package org.example.domain;
+package org.example.readonly.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.persistence.Entity;

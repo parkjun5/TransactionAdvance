@@ -1,6 +1,6 @@
-package org.example.domain.repository;
+package org.example.readonly.domain.repository;
 
-import org.example.domain.ReadOnly;
+import org.example.readonly.domain.ReadOnly;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

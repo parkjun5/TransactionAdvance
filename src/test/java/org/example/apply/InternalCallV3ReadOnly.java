@@ -1,10 +1,10 @@
 package org.example.apply;
 
-import org.example.application.NonReadOnlyService;
-import org.example.domain.NonReadOnly;
-import org.example.domain.ReadOnly;
-import org.example.domain.repository.NonReadOnlyRepository;
-import org.example.domain.repository.ReadOnlyRepository;
+import org.example.readonly.application.NonReadOnlyService;
+import org.example.readonly.domain.NonReadOnly;
+import org.example.readonly.domain.ReadOnly;
+import org.example.readonly.domain.repository.NonReadOnlyRepository;
+import org.example.readonly.domain.repository.ReadOnlyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

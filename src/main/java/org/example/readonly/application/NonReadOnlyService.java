@@ -1,10 +1,10 @@
-package org.example.application;
+package org.example.readonly.application;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.NonReadOnly;
-import org.example.domain.ReadOnly;
-import org.example.domain.repository.NonReadOnlyRepository;
+import org.example.readonly.domain.NonReadOnly;
+import org.example.readonly.domain.ReadOnly;
+import org.example.readonly.domain.repository.NonReadOnlyRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
