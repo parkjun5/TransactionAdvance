@@ -39,4 +39,7 @@ public class NonReadOnlyService {
 
     }
 
+    public void insertAll(List<NonReadOnly> collect) {
+        nonReadOnlyRepository.saveAll(collect);
+    }
 }

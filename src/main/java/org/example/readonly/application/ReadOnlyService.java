@@ -12,16 +12,21 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Transactional(readOnly = true, value = "transactionManager")
 @RequiredArgsConstructor
 public class ReadOnlyService {
 
     private final ReadOnlyRepository readOnlyRepository;
 
+    @Transactional(readOnly = true, value = "transactionManager")
     public List<ReadOnly> findAll() {
-        TransactionSynchronizationManager.setCurrentTransactionReadOnly(true);
-        boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
-        log.info("ReadOnlyService method read only = {}", readOnly);
+        boolean isTransaction = TransactionSynchronizationManager.isActualTransactionActive();
+        log.info("is transaction = {}", isTransaction);
+        return readOnlyRepository.findAll();
+    }
+
+    public List<ReadOnly> findAllNoTran() {
+        boolean isTransaction = TransactionSynchronizationManager.isActualTransactionActive();
+        log.info("is transaction = {}", isTransaction);
         return readOnlyRepository.findAll();
     }
 }
